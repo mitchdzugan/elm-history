@@ -33,28 +33,29 @@ Elm.Native.History.make = function(localRuntime){
     localRuntime.notify(hash.id, window.location.hash);
   });
 
-  // setPath : String -> Task error ()
-  var setPath = function(urlpath){
+  // setPath : String -> String -> Task error ()
+  var setPath = function(urlpath, title){
     return Task.asyncFunction(function(callback){
       setTimeout(function(){
         localRuntime.notify(path.id, urlpath);
         window.history.pushState({}, "", urlpath);
         localRuntime.notify(hash.id, window.location.hash);
         localRuntime.notify(length.id, window.history.length);
-
+        document.title = title;
       },0);
       return callback(Task.succeed(Utils.Tuple0));
     });
   };
 
-  // replacePath : String -> Task error ()
-  var replacePath = function(urlpath){
+  // replacePath : String -> String -> Task error ()
+  var replacePath = function(urlpath, title){
     return Task.asyncFunction(function(callback){
       setTimeout(function(){
         localRuntime.notify(path.id, urlpath);
         window.history.replaceState({}, "", urlpath);
         localRuntime.notify(hash.id, window.location.hash);
         localRuntime.notify(length.id, window.history.length);
+        document.title = title;
       },0);
       return callback(Task.succeed(Utils.Tuple0));
     });

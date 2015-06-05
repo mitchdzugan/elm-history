@@ -27,7 +27,7 @@ this task.
 
     setPath "/blog.html"
 -}
-setPath : String -> Task error ()
+setPath : String -> String -> Task error ()
 setPath = Native.History.setPath
 
 
@@ -43,7 +43,7 @@ and you do not wish to clutter the back button. If you
 want to simply point users towards a different page,
 consider using `setPath`.
 -}
-replacePath : String -> Task error ()
+replacePath : String -> String -> Task error ()
 replacePath = Native.History.replacePath
 
 
